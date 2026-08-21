@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.bank'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.2'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/com.twilio.sdk/twilio-java-sdk
+    implementation group: 'com.twilio.sdk', name: 'twilio-java-sdk', version: '7.0.0-rc-7'
+
+// https://mvnrepository.com/artifact/com.darwinsys/darwinsys-api
+    implementation group: 'com.darwinsys', name: 'darwinsys-api', version: '1.7.6'
+
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    //servlet
+    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+
+    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}
